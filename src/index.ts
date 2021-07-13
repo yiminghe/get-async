@@ -1,7 +1,10 @@
 const loadingMap = new Map();
 const loadedMap = new Map();
 
-export default async function getAsync(id: any, getter: () => Promise<any>) {
+export default async function getAsync<T = any, I = any>(
+  id: I,
+  getter: () => Promise<T>,
+): Promise<T> {
   if (loadedMap.has(id)) {
     return loadedMap.get(id);
   }

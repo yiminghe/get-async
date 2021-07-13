@@ -11,16 +11,16 @@ let called = 0;
 
 function getTimer() {
   called++;
-  return new Promise(resolve => {
+  return new Promise<number>(resolve => {
     setTimeout(() => {
       resolve(called);
     }, 100);
   });
 }
 
-const call1 = getAsync('timer', getTimer);
+const call1 = getAsync<number>('timer', getTimer);
 
-const call2 = getAsync('timer', getTimer);
+const call2 = getAsync<number>('timer', getTimer);
 
 const ret = await Promise.all([call1, call2]);
 
@@ -30,6 +30,5 @@ expect(ret).toMatchInlineSnapshot(`
     1,
   ]
 `);
-
 expect(called).toBe(1);
 ```
