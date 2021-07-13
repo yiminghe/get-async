@@ -5,6 +5,8 @@ get something asynchronously without repetition
 ## usage
 
 ```js
+import getAsync from 'get-async';
+
 let called = 0;
 
 function getTimer() {
