@@ -1,0 +1,86 @@
+{
+  "name": "get-async",
+  "version": "0.1.0",
+  "description": "get something asynchronously without repetition",
+  "homepage": "https://github.com/yiminghe/get-async",
+  "author": "yiminghe@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yiminghe/get-async.git"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "__tests__/**/*"
+          ]
+        }
+      ],
+      [
+        "pika-plugin-build-web-babel",
+        {
+          "format": "cjs",
+          "envName":"test"
+        }
+      ],
+      [
+        "pika-plugin-build-web-babel"
+      ],
+      [
+        "@pika/plugin-build-types"
+      ],
+      [
+        "pika-plugin-clean-dist-src"
+      ]
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/*"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/yiminghe/get-async/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "prettier": "prettier --write \"{src,__tests__}/**/*.{js,tsx}\"",
+    "pub": "np --no-publish --no-release-draft && npm run build && npm publish pkg",
+    "build": "pika-pack build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "coverage:gha": "jest --coverage",
+    "version": "npm run build"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-typescript": "^7.14.5",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-types": "^0.6.0",
+    "@pika/plugin-standard-pkg": "^0.6.0",
+    "@pika/types": "^0.6.0",
+    "babel-jest": "^24.8.0",
+    "coveralls": "^2.13.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^7.2.0",
+    "np": "^5.0.3",
+    "pika-plugin-build-web-babel": "^0.8.0",
+    "pika-plugin-clean-dist-src": "^0.1.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.11.1"
+  },
+  "lint-staged": {
+    "*.{tsx,js,jsx,ts}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}
