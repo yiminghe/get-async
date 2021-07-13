@@ -1,6 +1,6 @@
 {
   "name": "get-async",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "get something asynchronously without repetition",
   "homepage": "https://github.com/yiminghe/get-async",
   "author": "yiminghe@gmail.com",
@@ -22,7 +22,7 @@
         "pika-plugin-build-web-babel",
         {
           "format": "cjs",
-          "envName":"test"
+          "envName": "test"
         }
       ],
       [
