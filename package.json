@@ -64,6 +64,7 @@
     "@pika/plugin-build-types": "^0.6.0",
     "@pika/plugin-standard-pkg": "^0.6.0",
     "@pika/types": "^0.6.0",
+    "@types/jest": "^26.0.24",
     "babel-jest": "^24.8.0",
     "coveralls": "^2.13.1",
     "jest": "^24.8.0",

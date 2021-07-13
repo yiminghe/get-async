@@ -18,13 +18,9 @@ function getTimer() {
   });
 }
 
-const call1 = getAsync('timer', () => {
-  return getTimer();
-});
+const call1 = getAsync('timer', getTimer);
 
-const call2 = getAsync('timer', () => {
-  return getTimer();
-});
+const call2 = getAsync('timer', getTimer);
 
 const ret = await Promise.all([call1, call2]);
 
