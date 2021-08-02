@@ -1,6 +1,6 @@
 {
   "name": "get-async",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "get something asynchronously without repetition",
   "homepage": "https://github.com/yiminghe/get-async",
   "author": "yiminghe@gmail.com",
