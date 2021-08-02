@@ -1,4 +1,4 @@
-import getAsync from '../src/index';
+import getAsync, { isLoaded } from '../src/index';
 
 describe('get async', () => {
   it('works', async () => {
@@ -13,6 +13,8 @@ describe('get async', () => {
       });
     }
 
+    expect(isLoaded('timer')).toBe(false);
+
     const call1 = getAsync<number>('timer', getTimer);
 
     const call2 = getAsync<number>('timer', getTimer);
@@ -26,5 +28,6 @@ describe('get async', () => {
       ]
     `);
     expect(called).toBe(1);
+    expect(isLoaded('timer')).toBe(true);
   });
 });
