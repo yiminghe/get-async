@@ -22,11 +22,19 @@
         "pika-plugin-build-web-babel",
         {
           "format": "cjs",
-          "envName": "test"
+          "envName": "test",
+          "babel": {
+            "runtimeHelpers": true
+          }
         }
       ],
       [
-        "pika-plugin-build-web-babel"
+        "pika-plugin-build-web-babel",
+        {
+          "babel": {
+            "runtimeHelpers": true
+          }
+        }
       ],
       [
         "@pika/plugin-build-types"
@@ -58,6 +66,7 @@
     "version": "npm run build"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-typescript": "^7.14.5",
     "@pika/pack": "^0.5.0",
@@ -83,5 +92,8 @@
   },
   "pre-commit": [
     "lint-staged"
-  ]
+  ],
+  "dependencies": {
+    "@babel/runtime": "7.x"
+  }
 }
