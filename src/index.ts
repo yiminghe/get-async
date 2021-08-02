@@ -6,7 +6,7 @@ export default async function getAsync<T = any, I = any>(
   getter: () => Promise<T>,
 ): Promise<T> {
   if (isLoaded(id)) {
-    return loadedMap.get(id);
+    return getLoaded(id);
   }
   let promise = loadingMap.get(id);
   if (promise) {
@@ -26,4 +26,8 @@ export default async function getAsync<T = any, I = any>(
 
 export function isLoaded(id: any) {
   return loadedMap.has(id);
+}
+
+export function getLoaded(id: any) {
+  return loadedMap.get(id);
 }
