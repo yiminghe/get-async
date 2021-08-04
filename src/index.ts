@@ -1,7 +1,7 @@
 const loadingMap = new Map();
 const loadedMap = new Map();
 
-export default async function getAsync<T = any, I = any>(
+export default function getAsync<T = any, I = any>(
   id: I,
   getter: () => Promise<T>,
 ): Promise<T> {
@@ -10,18 +10,20 @@ export default async function getAsync<T = any, I = any>(
   }
   let promise = loadingMap.get(id);
   if (promise) {
-    return await promise;
+    return promise;
   }
   promise = getter();
   loadingMap.set(id, promise);
-  let value;
-  try {
-    value = await promise;
-  } finally {
-    loadingMap.delete(id);
-  }
-  loadedMap.set(id, value);
-  return value;
+  promise.then(
+    value => {
+      loadedMap.set(id, value);
+      loadingMap.delete(id);
+    },
+    () => {
+      loadingMap.delete(id);
+    },
+  );
+  return promise;
 }
 
 export function isLoaded(id: any) {

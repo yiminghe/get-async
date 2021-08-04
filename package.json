@@ -92,8 +92,5 @@
   },
   "pre-commit": [
     "lint-staged"
-  ],
-  "dependencies": {
-    "@babel/runtime": "7.x"
-  }
+  ]
 }
