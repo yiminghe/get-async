@@ -30,6 +30,21 @@ export function isLoaded(id: any) {
   return loadedMap.has(id);
 }
 
+export function isLoading(id: any) {
+  return loadingMap.has(id);
+}
+
 export function getLoaded(id: any) {
   return loadedMap.get(id);
+}
+
+export function removeLoaded(id: any) {
+  if (isLoaded(id)) {
+    loadedMap.delete(id);
+  }
+  if (isLoading(id)) {
+    loadingMap.get(id).then(() => {
+      loadedMap.delete(id);
+    });
+  }
 }
