@@ -1,4 +1,4 @@
-import getAsync, { getLoaded, isLoaded } from '../src/index';
+import getAsync, { getLoaded, isLoaded, removeLoaded } from '../src/index';
 
 describe('get async', () => {
   it('works', async () => {
@@ -30,5 +30,18 @@ describe('get async', () => {
     expect(called).toBe(1);
     expect(isLoaded('timer')).toBe(true);
     expect(getLoaded('timer')).toBe(1);
+
+    // remove loaded
+    removeLoaded('timer');
+    expect(isLoaded('timer')).toBe(false);
+    expect(getLoaded('timer')).toBeUndefined();
+
+    // remove while loading
+    const call3 = getAsync<number>('timer', getTimer);
+    const call4 = getAsync<number>('timer', getTimer);
+    removeLoaded('timer');
+    expect(isLoaded('timer')).toBe(false);
+    await Promise.all([call3, call4]);
+    expect(isLoaded('timer')).toBe(false);
   });
 });
